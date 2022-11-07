@@ -2,8 +2,11 @@ import React, { useState } from 'react'
 import { AppBar, Button, Tab, Tabs, Toolbar, Typography, useMediaQuery, useTheme } from '@mui/material'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import DrawerComp from '../Drawer/Drawer';
+import { Link } from "react-router-dom";
+import "./Header.scss"
 
-const PAGES = ["Jouer", "Resultat", "Contactez nous", "A propos"];
+const PAGES = ["Jouer", "Resultat", "Contactez_nous", "A_propos"];
+const PAGES_BTN = ["Se connecter", "S'inscrir"];
 
 const Header = () => {
 
@@ -19,7 +22,7 @@ const Header = () => {
     return (
         <React.Fragment>
 
-            <AppBar sx={{ background: "#063970" }}>
+            <AppBar sx={{ background: "#063970", }} className="AppBar" >
 
                 <Toolbar>
 
@@ -47,12 +50,16 @@ const Header = () => {
                             <ShoppingCartIcon />
 
 
-                            <Tabs sx={{ marginLeft: 'auto' }} textColor="inherit" value={value} onChange={(e, value) => setValue(value)} indicatorColor="secondary" >
+                            <Tabs textColor="inherit" value={value} onChange={(e, value) => setValue(value)} >
 
 
                                 {PAGES.map((page, index) => (
 
-                                    <Tab key={index} label={page} />
+                                    <Link style={{ textDecoration: "none", color: "white" }} to={`/${page}`}>
+
+                                        <Tab key={index} label={page} />
+                                    </Link>
+
 
                                 ))}
 
@@ -60,8 +67,14 @@ const Header = () => {
 
                             </Tabs>
 
-                            <Button sx={{ marginLeft: "auto" }} variant="contained" >Login</Button>
-                            <Button sx={{ marginLeft: "10px" }} variant="contained" >Sigup</Button>
+                            {/* {PAGES_BTN.map((page_btn , index)=> (
+                                    
+                                    
+                                    
+                                    ))} */}
+
+                            <Button sx={{ marginLeft: "auto" }} variant="contained" > <Link to="Se_connecter" style={{ textDecoration: 'none', color: "white" }}>  Login </Link> </Button>
+                            <Button sx={{ marginLeft: "10px" }} variant="contained" >  <Link to="S'inscrire" style={{ textDecoration: "none", color: "white" }}> Sigup </Link></Button>
 
 
 
